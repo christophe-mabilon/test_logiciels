@@ -20,7 +20,6 @@ public class TaskManager {
         task = new Task();
     }
 
-
     /**
      * Affiche le menu et appelle la méthode correspondante en fonction du choix de l'utilisateur.
      */
