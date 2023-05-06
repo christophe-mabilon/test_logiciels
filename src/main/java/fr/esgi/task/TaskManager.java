@@ -6,18 +6,18 @@ import static fr.esgi.task.TaskList.getAllTasks;
 
 
 public class TaskManager {
-    private static TaskList taskList;
-    private Task task;
+    private static ApplicationConsole applicationConsole;
+
     //declaration du scanner pour les entrées clavier
     static Scanner scanner = new Scanner(System.in);
-
+    int choice;
 
     /**
      * Constructeur privé pour empêcher l'instanciation de la classe.
      */
-    public TaskManager() {
-        taskList = new TaskList();
-        task = new Task();
+    public TaskManager(ApplicationConsole applicationConsole) {
+
+       TaskManager.applicationConsole = applicationConsole;
     }
 
     /**
@@ -25,37 +25,34 @@ public class TaskManager {
      */
     public void run() {
         //declaration de la variable choice pour le choix de l'utilisateur
-        int choice;
-
-        do {
+       do {
             displayMenu();
-            choice = scanner.nextInt();
-            scanner.nextLine();
+           choice = applicationConsole.readLine();
             switch (choice) {
                 case 1 -> addTask();
                 case 2 -> markATaskAsCompleted();
                 case 3 -> removeTask();
                 case 4 -> displayTasks();
                 case 5 -> System.exit(0);
-                default -> System.out.println("Choix invalide");
+                default -> applicationConsole.showMessage("Choix invalide");
             }
-        } while (choice != 5);
+        } while (choice>0 && choice<6);
     }
 
     private void displayMenu() {
-        System.out.println("1. Ajouter une tâche");
-        System.out.println("2. Marquer une tâche comme terminée");
-        System.out.println("3. Supprimer une tâche");
-        System.out.println("4. Afficher la liste des tâches");
-        System.out.println("5. Quitter");
-        System.out.println("Saisissez votre choix: ");
+        applicationConsole.showMessage("1. Ajouter une tâche");
+        applicationConsole.showMessage("2. Marquer une tâche comme terminée");
+        applicationConsole.showMessage("3. Supprimer une tâche");
+        applicationConsole.showMessage("4. Afficher la liste des tâches");
+        applicationConsole.showMessage("5. Quitter");
+        applicationConsole.showMessage("Saisissez votre choix: ");
     }
 
     /**
      * Ajoute une tâche à la liste.
      */
     static void addTask() {
-        System.out.println("Entrez la description de la tâche : ");
+        applicationConsole.showMessage("Entrez la description de la tâche : ");
         String description = scanner.nextLine();
         TaskList.addTask(description);
     }
@@ -67,14 +64,14 @@ public class TaskManager {
      * Marque une tâche comme terminée.
      */
     static void markATaskAsCompleted() {
-        System.out.println("Entrez l'ID de la tâche à marquer comme terminée : ");
-        int id = scanner.nextInt();
+        applicationConsole.showMessage("Entrez l'ID de la tâche à marquer comme terminée : ");
+        int id = applicationConsole.readLine();
         Task task = getAllTasks().stream().filter(t -> t.getId() == id).findFirst().orElse(null);
         if (task != null) {
             TaskList.markTaskAsCompleted(String.valueOf(id));
-            System.out.println("Tâche marquée comme terminée avec succès");
+            applicationConsole.showMessage("Tâche marquée comme terminée avec succès");
         } else {
-            System.out.println("Tâche non trouvée");
+            applicationConsole.showMessage("Tâche non trouvée");
         }
     }
 
@@ -82,14 +79,14 @@ public class TaskManager {
      * Supprime une tâche de la liste.
      */
     static void removeTask() {
-        System.out.println("Entrez l'ID de la tâche à supprimer : ");
-        int id = scanner.nextInt();
+        applicationConsole.showMessage("Entrez l'ID de la tâche à supprimer : ");
+        int id = applicationConsole.readLine();
         Task task = getAllTasks().stream().filter(t -> t.getId() == id).findFirst().orElse(null);
         if (task != null) {
             TaskList.removeTask(id);
-            System.out.println("Tâche supprimée avec succès");
+            applicationConsole.showMessage("Tâche supprimée avec succès");
         } else {
-            System.out.println("Tâche non trouvée");
+            applicationConsole.showMessage("Tâche non trouvée");
         }
     }
 
@@ -100,9 +97,9 @@ public class TaskManager {
         List<Task> tasks;
         tasks = getAllTasks();
         if (!tasks.isEmpty()) {
-            tasks.forEach(task -> System.out.println(task.toString()));
+            tasks.forEach(task -> applicationConsole.showMessage(task.toString()));
         } else {
-          System.out.println("La liste est vide");
+          applicationConsole.showMessage("La liste est vide");
         }
     }
 
