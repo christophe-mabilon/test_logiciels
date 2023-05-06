@@ -13,6 +13,10 @@ public class Task {
         this.isDone = isDone;
     }
 
+    public Task() {
+
+    }
+
 
     // Getters et Setters
     public int getId() {
@@ -39,5 +43,22 @@ public class Task {
         isDone = done;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Task task)) return false;
 
+        if (getId() != task.getId()) return false;
+        if (!getDescription().equals(task.getDescription())) return false;
+        return isDone.equals(task.isDone);
+    }
+
+   @Override
+    public String toString() {
+        return "Task" + id +" : { " +
+                "id=" + id +
+                ", description='" + description + '\'' +
+                ", isDone=" + isDone +
+                " }";
+    }
 }
