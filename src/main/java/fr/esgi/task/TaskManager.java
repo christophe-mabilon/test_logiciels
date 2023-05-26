@@ -6,7 +6,7 @@ import static fr.esgi.task.TaskList.getAllTasks;
 
 
 public class TaskManager {
-    private static ApplicationConsole applicationConsole;
+    static ApplicationConsole applicationConsole;
 
     //declaration du scanner pour les entrées clavier
     static Scanner scanner = new Scanner(System.in);

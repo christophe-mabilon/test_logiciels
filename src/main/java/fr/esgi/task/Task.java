@@ -2,30 +2,38 @@ package fr.esgi.task;
 
 public class Task {
     //declaration des variables de la classe Task
-    private int id;
+    private final Long id;
     private String description;
     private Boolean isDone;
 
+    private static Long counter = 0L;
+
     //CONSTRUCTOR
-    public Task(int id, String description, Boolean isDone) {
-        this.id = id;
+
+    public Task() {
+        id = ++counter;
+    }
+
+    public Task(String description) {
+        this();
+        this.description = description;
+
+    }
+    public Task( String description, Boolean isDone) {
+        this();
         this.description = description;
         this.isDone = isDone;
     }
 
-    public Task() {
-
-    }
 
 
     // Getters et Setters
-    public int getId() {
+
+
+    public Long getId () {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getDescription() {
         return description;
