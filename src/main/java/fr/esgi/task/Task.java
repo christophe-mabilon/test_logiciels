@@ -9,24 +9,20 @@ public class Task {
 
     //CONSTRUCTOR
 
-    public Task () {
-        id = ++counter;
-    }
-
-    public Task ( String description ) {
-        this ( );
-        this.description = description;
-
-    }
-
     public Task ( String description , Boolean isDone ) {
-        this ( );
+        id = ++counter;
         this.description = description;
         this.isDone = isDone;
     }
 
     // Getters et Setters
+    public static Long getCounter () {
+        return counter;
+    }
 
+    public static void setCounter ( Long counter ) {
+        Task.counter = counter;
+    }
 
     public Long getId () {
         return id;
@@ -48,6 +44,7 @@ public class Task {
     public void setDone ( Boolean done ) {
         isDone = done;
     }
+
 
     @Override
     public boolean equals ( Object o ) {

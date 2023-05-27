@@ -96,7 +96,7 @@ class TaskTest {
     @Test
     void setDone () {
         //given
-        Task task = new Task ( );
+        Task task = new Task ("Test Task", false);
         //when
         task.setDone ( true );
         //then

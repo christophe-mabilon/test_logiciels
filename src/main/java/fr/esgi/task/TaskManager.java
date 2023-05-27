@@ -28,7 +28,7 @@ public class TaskManager {
             displayMenu ( );
             choice = applicationConsole.readLine ( );
             switch (Integer.parseInt ( String.valueOf ( choice ) )) {
-                case 1 -> addTask ( );
+                case 1 -> addTask ( scanner);
                 case 2 -> markATaskAsCompleted ( );
                 case 3 -> removeTask ( );
                 case 4 -> displayTasks ( );
@@ -38,7 +38,7 @@ public class TaskManager {
         } while (choice > 0 && choice < 6);
     }
 
-    private void displayMenu () {
+    void displayMenu () {
         applicationConsole.showMessage ( "-----------------------------------------------" );
         applicationConsole.showMessage ( "Bienvenue dans votre gestionnaire de tâches !" );
         applicationConsole.showMessage ( "1. Ajouter une tâche" );
@@ -53,7 +53,7 @@ public class TaskManager {
     /**
      * Ajoute une tâche à la liste.
      */
-    void addTask () {
+    void addTask (Scanner scanner) {
         applicationConsole.showMessage ( "Entrez la description de la tâche : " );
         String description = scanner.nextLine ( );
         taskList.addTask ( description );
@@ -74,10 +74,10 @@ public class TaskManager {
             return;
         }
         applicationConsole.showMessage ( "Sélectionnez l'ID de la tâche à marquer comme terminée : " );
-        int id = applicationConsole.readLine ( );
-        Task task = taskList.markTaskAsCompleted ( String.valueOf ( id ) );
+        String id = String.valueOf ( applicationConsole.readLine ( ) );
+        Task task = taskList.markTaskAsCompleted ( id);
         if (task != null) {
-            taskList.markTaskAsCompleted ( String.valueOf ( id ) );
+            taskList.markTaskAsCompleted ( id );
             applicationConsole.showMessage ( "Tâche marquée comme terminée avec succès\n" );
         } else {
             applicationConsole.showMessage ( "Tâche non trouvée\n" );
@@ -97,10 +97,10 @@ public class TaskManager {
             return;
         }
         applicationConsole.showMessage ( "Entrez l'ID de la tâche à supprimer : " );
-        int id = applicationConsole.readLine ( );
-        boolean taskRemoved = taskList.removeTask ( id );
+        long id =  applicationConsole.readLine ( );
+        boolean taskRemoved = taskList.removeTask ( (long) id );
         if (taskRemoved) {
-            taskList.removeTask ( id );
+            taskList.removeTask ( (long) id );
             applicationConsole.showMessage ( "Tâche supprimée avec succès\n" );
         } else {
             applicationConsole.showMessage ( "Tâche non trouvée\n" );
@@ -120,6 +120,7 @@ public class TaskManager {
             applicationConsole.showMessage ( "La liste est vide\n" );
         }
     }
+
 
 
 }
