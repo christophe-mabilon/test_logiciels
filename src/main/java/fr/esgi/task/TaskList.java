@@ -8,23 +8,24 @@ import java.util.List;
  */
 public class TaskList {
     private List<Task> tasks = new ArrayList<> ( );
-    public  TaskList () {
+
+    public TaskList () {
     }
 
-    public  TaskList ( List<Task> tasks ) {
+    public TaskList ( List<Task> tasks ) {
         this.tasks = tasks;
 
     }
 
     public void addTask ( String description ) {
-        tasks.add ( new Task (  description , false ) );
+        tasks.add ( new Task ( description , false ) );
     }
 
     public boolean removeTask ( int taskId ) {
-        if(tasks.stream ( ).anyMatch ( task -> task.getId ( ) == taskId )) {
+        if (tasks.stream ( ).anyMatch ( task -> task.getId ( ) == taskId )) {
             tasks.removeIf ( task -> task.getId ( ) == taskId );
             return true;
-        }else{
+        } else {
             return false;
         }
 
@@ -32,16 +33,16 @@ public class TaskList {
 
     public Task markTaskAsCompleted ( String taskId ) {
         Task task = tasks.stream ( ).filter ( t -> t.getId ( ) == Integer.parseInt ( taskId ) ).findFirst ( ).orElse ( null );
-        if(task != null){
+        if (task != null) {
             task.setDone ( true );
             return task;
-        }else{
+        } else {
             return null;
         }
 
     }
 
-    public  List<Task> getAllTasks () {
+    public List<Task> getAllTasks () {
         return tasks;
     }
 
