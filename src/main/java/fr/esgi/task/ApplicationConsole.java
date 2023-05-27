@@ -14,6 +14,11 @@ public class ApplicationConsole {
     }
 
     public int readLine() {
-        return Integer.parseInt(scanner.nextLine());
+        try {
+            return Integer.parseInt(scanner.nextLine());
+        } catch (NumberFormatException e) {
+            showMessage("Choix Invalid ! Veuillez saisir un nombre");
+            return readLine(); // Essaye de relire les données
+        }
     }
 }

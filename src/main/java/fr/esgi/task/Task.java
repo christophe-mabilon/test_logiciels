@@ -25,8 +25,6 @@ public class Task {
         this.isDone = isDone;
     }
 
-
-
     // Getters et Setters
 
 

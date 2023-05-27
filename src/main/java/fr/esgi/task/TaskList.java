@@ -1,44 +1,48 @@
 package fr.esgi.task;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /**
  * Classe qui gère la liste des tâches.
  */
 public class TaskList {
-    private static ApplicationConsole applicationConsole;
-    private static List<Task> tasks = new ArrayList<> ( );
-    TaskList ( ApplicationConsole applicationConsole , List<Task> tasks ) {
-        TaskList.tasks = tasks;
-        TaskList.applicationConsole = applicationConsole;
+    private List<Task> tasks = new ArrayList<> ( );
+    public  TaskList () {
     }
 
-    public static void addTask ( String description ) {
+    public  TaskList ( List<Task> tasks ) {
+        this.tasks = tasks;
+
+    }
+
+    public void addTask ( String description ) {
         tasks.add ( new Task (  description , false ) );
     }
 
-    public static void removeTask ( int taskId ) {
-        tasks.removeIf ( task -> task.getId ( ) == taskId );
-    }
-
-    public static void markTaskAsCompleted ( String taskId ) {
-        tasks.stream ( ).filter ( task -> task.getId ( ) == Integer.parseInt ( taskId ) ).findFirst ( ).ifPresent ( task -> task.setDone ( true ) );
-
-
-    }
-
-    public static List<Task> getAllTasks () {
-
-        if (tasks != null) {
-            return tasks;
-
-        } else {
-            applicationConsole.showMessage ( "La liste est vide" );
-            return Collections.emptyList ( );
+    public boolean removeTask ( int taskId ) {
+        if(tasks.stream ( ).anyMatch ( task -> task.getId ( ) == taskId )) {
+            tasks.removeIf ( task -> task.getId ( ) == taskId );
+            return true;
+        }else{
+            return false;
         }
 
+    }
+
+    public Task markTaskAsCompleted ( String taskId ) {
+        Task task = tasks.stream ( ).filter ( t -> t.getId ( ) == Integer.parseInt ( taskId ) ).findFirst ( ).orElse ( null );
+        if(task != null){
+            task.setDone ( true );
+            return task;
+        }else{
+            return null;
+        }
+
+    }
+
+    public  List<Task> getAllTasks () {
+        return tasks;
     }
 
 

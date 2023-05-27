@@ -1,22 +1,33 @@
 package fr.esgi.task;
 
-
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.MockedStatic;
 
+import java.lang.reflect.Field;
+
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+
 class TaskTest {
+
+    @BeforeEach
+    void resetCounter() throws NoSuchFieldException, IllegalAccessException {
+        Field counterField = Task.class.getDeclaredField("counter");
+        counterField.setAccessible(true);
+        counterField.set(null, 0L);
+    }
 
     @Test
     void getId() {
         //given
         Task task = mock(Task.class);
-        Assertions.assertNotNull(task);
+        assertNotNull(task);
         // when
         when(task.getId()).thenReturn(1L);
 
         // then
+        assertNotNull(task.getId());
         Assertions.assertEquals(1, task.getId());
     }
 
@@ -24,10 +35,11 @@ class TaskTest {
     void setId() {
         //given
         Task task = mock(Task.class);
-        Assertions.assertNotNull(task);
+        assertNotNull(task);
         // when
         when(task.getId()).thenReturn(1L);
         //then
+        assertNotNull(task.getId());
         Assertions.assertEquals(1, task.getId());
 
         //given
@@ -35,6 +47,7 @@ class TaskTest {
 
         //when
         when(task.getId()).thenReturn(2L);
+        assertNotNull(task.getId());
         //then
         Assertions.assertEquals(2, task.getId());
     }
@@ -43,10 +56,10 @@ class TaskTest {
     void getDescription() {
         //given
         Task task = mock(Task.class);
-        Assertions.assertNotNull(task);
+        assertNotNull(task);
         //when
         when(task.getDescription()).thenReturn("Test Task");
-        Assertions.assertNotNull(task.getDescription());
+        assertNotNull(task.getDescription());
         //then
         Assertions.assertEquals("Test Task", task.getDescription());
     }
@@ -55,10 +68,10 @@ class TaskTest {
     void setDescription() {
         //given
         Task task = mock(Task.class);
-        Assertions.assertNotNull(task);
+        assertNotNull(task);
         //when
         when(task.getDescription()).thenReturn("Test Task");
-        Assertions.assertNotNull(task.getDescription());
+        assertNotNull(task.getDescription());
         //then
         Assertions.assertEquals("Test Task", task.getDescription());
     }
@@ -67,19 +80,14 @@ class TaskTest {
     void getDone() {
         //given
         Task task = mock(Task.class);
-        Assertions.assertNotNull(task);
-        Assertions.assertNotNull(task.getDone());
+        assertNotNull(task);
         //when
         when(task.getDone()).thenReturn(false);
-        Assertions.assertNotNull(task.getDone());
         //then
         Assertions.assertEquals(false, task.getDone());
 
-        //given
-        mock(Task.class);
         //when
         when(task.getDone()).thenReturn(true);
-        Assertions.assertNotNull(task.getDone());
         //then
         Assertions.assertEquals(true, task.getDone());
     }
@@ -87,47 +95,41 @@ class TaskTest {
     @Test
     void setDone() {
         //given
-        Task task = mock(Task.class);
-        Assertions.assertNotNull(task);
-        Assertions.assertNotNull(task.getDone());
+        Task task = new Task();
         //when
-        when(task.getDone()).thenReturn(true);
-        Assertions.assertNotNull(task.getDone());
-        //given
-        mock(Task.class);
-        //when
-        when(task.getDone()).thenReturn(true);
-        Assertions.assertNotNull(task.getDone());
+        task.setDone(true);
         //then
         Assertions.assertEquals(true, task.getDone());
+
     }
 
     @Test
     void testEquals() {
         //given
         Task task = mock(Task.class);
-        Assertions.assertNotNull(task);
+        assertNotNull(task);
 
         // when
         when(task.getId()).thenReturn(1L);
+        assertNotNull(task.getId());
         //then
         Assertions.assertEquals(1, task.getId());
 
 
         //when
         when(task.getDescription()).thenReturn("Test Task");
-        Assertions.assertNotNull(task.getDescription());
+        assertNotNull(task.getDescription());
         //then
         Assertions.assertEquals("Test Task", task.getDescription());
 
         //when
         when(task.getDone()).thenReturn(false);
-        Assertions.assertNotNull(task.getDone());
+        assertNotNull(task.getDone());
         //then
         Assertions.assertEquals(false, task.getDone());
         //when
         when(task.getDone()).thenReturn(true);
-        Assertions.assertNotNull(task.getDone());
+        assertNotNull(task.getDone());
         //then
         Assertions.assertEquals(true, task.getDone());
     }
@@ -136,30 +138,50 @@ class TaskTest {
     void testToString() {
         //given
         Task task = mock(Task.class);
-        Assertions.assertNotNull(task);
+        assertNotNull(task);
         //when
         when(task.getId()).thenReturn(1L);
+        assertNotNull(task.getId());
         //then
         Assertions.assertEquals(1, task.getId());
 
         //when
         when(task.getDescription()).thenReturn("Test Task");
-        Assertions.assertNotNull(task.getDescription());
+        assertNotNull(task.getDescription());
         //then
         Assertions.assertEquals("Test Task", task.getDescription());
 
         //when
         when(task.getDone()).thenReturn(false);
-        Assertions.assertNotNull(task.getDone());
+        assertNotNull(task.getDone());
         //then
         Assertions.assertEquals(false, task.getDone());
         //when
         when(task.getDone()).thenReturn(true);
-        Assertions.assertNotNull(task.getDone());
+        assertNotNull(task.getDone());
         //then
         Assertions.assertEquals(true, task.getDone());
 
     }
 
-    
-}
+    @Test
+    void testConstructor() {
+        //given
+        Task task = mock(Task.class);
+        assertNotNull(task);
+        //when
+        when(task.getId()).thenReturn(1L);
+        when(task.getDescription()).thenReturn("Test Task");
+        when(task.getDone()).thenReturn(false);
+
+        Task createdTask = new Task("Test Task", false);
+        assertNotNull(createdTask);
+        assertNotNull(createdTask.getId());
+        assertNotNull(createdTask.getDescription());
+        assertNotNull(createdTask.getDone());
+        //then
+        Assertions.assertEquals(task.getId(), createdTask.getId());
+        Assertions.assertEquals(task.getDescription(), createdTask.getDescription());
+        Assertions.assertEquals(task.getDone(), createdTask.getDone());
+        }
+    }

@@ -5,7 +5,8 @@ import java.util.Scanner;
 public class App {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        TaskManager taskManager = new TaskManager(new ApplicationConsole(scanner));
+        TaskList taskList = new TaskList();
+        TaskManager taskManager = new TaskManager(new ApplicationConsole(scanner) , taskList );
         taskManager.run();
     }
 }
