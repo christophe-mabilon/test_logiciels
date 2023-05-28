@@ -14,7 +14,7 @@ import static org.mockito.Mockito.*;
 class TaskManagerTest {
 
 
-    private Scanner scanner;
+    private Scanner scanner = mock ( Scanner.class );
     ApplicationConsole applicationConsole = new ApplicationConsole ( scanner );
     private TaskManager taskManager;
     private TaskList taskList;

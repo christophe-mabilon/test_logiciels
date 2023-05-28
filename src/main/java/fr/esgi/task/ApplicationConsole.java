@@ -5,17 +5,20 @@ import java.util.Scanner;
 public class ApplicationConsole {
     private final Scanner scanner;
 
-    public ApplicationConsole ( Scanner scanner ) {
-        this.scanner = scanner;
+public ApplicationConsole(Scanner scanner) {
+        this.scanner = new Scanner ( System.in );
     }
+
+
+
 
     public short showMessage ( String message ) {
         System.out.println ( message );
         return 0;
     }
 
-    public int readLine() {
-        return Integer.parseInt ( scanner.nextLine ( ) );
+    public int readLine(Scanner scanner) {
+    return  Integer.parseInt ( scanner.nextLine ( ) );
     }
 
 

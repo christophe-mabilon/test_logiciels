@@ -49,7 +49,7 @@ public class TaskManager {
         do {
             displayMenu ( );
             choice = Integer.parseInt ( scanner.nextLine ( ) );
-            if(choice < 0 || choice > 5){
+            if (choice < 0 || choice > 5) {
                 choice = 0;
             }
             switch (choice) {
@@ -117,14 +117,16 @@ public class TaskManager {
             return;
         }
         applicationConsole.showMessage ( "Sélectionnez l'ID de la tâche à marquer comme terminée : " );
-        int id = applicationConsole.readLine ( );
-        boolean task = taskList.markTaskAsCompleted ( (long) id ) ;
-        if (task) {
+        int id = applicationConsole.readLine (scanner );
+        boolean taskIsNotCompleted = taskList.markTaskAsCompleted ( (long) id ) ;
+
+        if (taskIsNotCompleted) {
             taskList.markTaskAsCompleted ( (long) id ) ;
             applicationConsole.showMessage ( "Tâche marquée comme terminée avec succès\n" );
         } else {
             applicationConsole.showMessage ( "Tâche non trouvée\n" );
         }
+
     }
 
     /**
@@ -140,7 +142,7 @@ public class TaskManager {
             return;
         }
         applicationConsole.showMessage ( "Entrez l'ID de la tâche à supprimer : " );
-        long id = applicationConsole.readLine ( );
+        long id = applicationConsole.readLine ( scanner );
         boolean taskRemoved = taskList.removeTask ( (long) id );
         if (taskRemoved) {
             taskList.removeTask ( (long) id );
