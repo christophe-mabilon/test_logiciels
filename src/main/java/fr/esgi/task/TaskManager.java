@@ -78,8 +78,7 @@ public class TaskManager {
         String choix4 = "4. Afficher la liste des tâches\n";
         String choix5 = "5. Quitter\n";
         String choix6 = "Saisissez votre choix: \n";
-        return
-                applicationConsole.showMessage ( divider +
+        applicationConsole.showMessage ( divider +
                         welcome +
                         divider +
                         choix1 +
@@ -88,6 +87,7 @@ public class TaskManager {
                         choix4 +
                         choix5 +
                         choix6 + divider );
+        return 0;
     }
 
     /**

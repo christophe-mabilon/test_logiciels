@@ -37,8 +37,6 @@ class TaskManagerTest {
         displayMenu ( );
         //on vérifie le message de bienvenue
         assertEquals ( "\"-----------------------------------------------\\n\"+\"Bienvenue dans votre gestionnaire de tâches !\\n\"+\"1. Ajouter une tâche\\n\"+\"2. Marquer une tâche comme terminée\\n\"+\"3. Supprimer une tâche\\n\"+\"4. Afficher la liste des tâches\\n\"+\"5. Quitter\\n\"+\"Saisissez votre choix: \\n\"+\"-----------------------------------------------\\n\"" , displayMenu ( ) , "Le message de bienvenue devrais etre affiché" );
-        //on vérifie que le choix 0 n'est pas pris en compte
-        assertEquals ( 0 , applicationConsole.showMessage ( "Choix invalide" ) , "Le choix 0 ne devrais pas etre pris en compte" );
         //on vérifie que le choix 1 est bien pris en compte
         assertEquals ( 1 , addTask ( scanner ) , "Le choix 1 devrais etre pris en compte" );
         //on vérifie que le choix 2 est bien pris en compte
@@ -49,8 +47,7 @@ class TaskManagerTest {
         assertEquals ( 4 , taskManager.displayTasks ( ) , "Le choix 4 devrais etre pris en compte" );
         //on vérifie que le choix 5 est bien pris en compte
         assertEquals ( 5 , applicationConsole.exit ( ) , "Le choix 5 devrais etre pris en compte" );
-        //on vérifie que le choix 6 n'est pas pris en compte
-        assertEquals ( 6 , applicationConsole.showMessage ( "Choix invalide" ) , "Le choix 6 ne devrais pas etre pris en compte" );
+
         // on vérifie l'entrée utilisateur
         verify ( scanner ).nextLine ( );
         //on vérifie que la methode addTask a été appellé 3 fois ét à créer 3 taches en simulant l'entrée utilisateur

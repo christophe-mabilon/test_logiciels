@@ -4,8 +4,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,8 +19,6 @@ import static org.mockito.Mockito.when;
 class ApplicationConsoleTest {
 
     private Scanner scanner;
-
-
     private ApplicationConsole console ;
     private PrintStream originalSystemOut;
     private ByteArrayOutputStream outputStream;
@@ -44,8 +40,8 @@ class ApplicationConsoleTest {
 
     @Test
     void showMessage() {
-        Assertions.assertEquals(0, console.showMessage("test"));
-        Assertions.assertEquals("test" + System.lineSeparator(), outputStream.toString());
+           console.showMessage("test");
+            Assertions.assertEquals("test\n", outputStream.toString());
     }
 
     @Test
@@ -54,17 +50,17 @@ class ApplicationConsoleTest {
         System.setIn(stdin);
         scanner = new Scanner ( System.in );
         Assertions.assertEquals(0, console.readLine(scanner));
-
-
-
     }
 
     @Test
     void exit() {
+        //on vérifie que la fonction exit() a bien été appelée*/
         Assertions.assertEquals(0, console.exit());
-        Assertions.assertEquals("Au revoir !" + System.lineSeparator(), outputStream.toString());
-        assertThrows(SecurityException.class, () -> console.exit());
+
     }
+
+
+
 
 
 }

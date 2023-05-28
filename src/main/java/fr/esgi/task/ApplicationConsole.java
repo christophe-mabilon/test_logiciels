@@ -12,9 +12,8 @@ public ApplicationConsole(Scanner scanner) {
 
 
 
-    public short showMessage ( String message ) {
+    public void showMessage ( String message ) {
         System.out.println ( message );
-        return 0;
     }
 
     public int readLine(Scanner scanner) {
@@ -25,6 +24,7 @@ public ApplicationConsole(Scanner scanner) {
     public short exit() {
         this.showMessage ( "Au revoir !" );
         System.exit ( 0 );
+
         return 0;
     }
 

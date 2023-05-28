@@ -1,10 +1,8 @@
 package fr.esgi.task;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.lang.reflect.Field;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
@@ -12,15 +10,12 @@ import static org.mockito.Mockito.when;
 
 class TaskTest {
 
-    @BeforeEach
-    void resetCounter () throws NoSuchFieldException, IllegalAccessException {
-        Field counterField = Task.class.getDeclaredField ( "counter" );
-        counterField.setAccessible ( true );
-        counterField.set ( null , 0L );
-    }
+
 
     @Test
     void getId () {
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
         //given
         Task task = mock ( Task.class );
         assertNotNull ( task );
@@ -34,6 +29,8 @@ class TaskTest {
 
     @Test
     void setId () {
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
         //given
         Task task = mock ( Task.class );
         assertNotNull ( task );
@@ -55,6 +52,8 @@ class TaskTest {
 
     @Test
     void getDescription () {
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
         //given
         Task task = mock ( Task.class );
         assertNotNull ( task );
@@ -67,6 +66,8 @@ class TaskTest {
 
     @Test
     void setDescription () {
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
         //given
         Task task = mock ( Task.class );
         assertNotNull ( task );
@@ -79,6 +80,8 @@ class TaskTest {
 
     @Test
     void getDone () {
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
         //given
         Task task = mock ( Task.class );
         assertNotNull ( task );
@@ -95,6 +98,8 @@ class TaskTest {
 
     @Test
     void setDone () {
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
         //given
         Task task = new Task ("Test Task", false);
         //when
@@ -106,6 +111,8 @@ class TaskTest {
 
     @Test
     void testEquals () {
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
         //given
         Task task = mock ( Task.class );
         assertNotNull ( task );
@@ -137,6 +144,8 @@ class TaskTest {
 
     @Test
     void testToString () {
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
         //given
         Task task = mock ( Task.class );
         assertNotNull ( task );
@@ -167,6 +176,8 @@ class TaskTest {
 
     @Test
     void testConstructor () {
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
         //given
         Task task = mock ( Task.class );
         assertNotNull ( task );
