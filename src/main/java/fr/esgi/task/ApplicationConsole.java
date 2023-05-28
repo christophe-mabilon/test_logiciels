@@ -12,8 +12,9 @@ public ApplicationConsole(Scanner scanner) {
 
 
 
-    public void showMessage ( String message ) {
+    public Object showMessage ( String message ) {
         System.out.println ( message );
+        return null;
     }
 
     public int readLine(Scanner scanner) {

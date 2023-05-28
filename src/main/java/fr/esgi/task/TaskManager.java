@@ -11,7 +11,7 @@ public class TaskManager {
 
     private ApplicationConsole applicationConsole = new ApplicationConsole ( scanner );
     private TaskList taskList = new TaskList ( );
-    int choice;
+    int choice =0;
 
     /**
      * Constructeur de la classe TaskManager
@@ -158,7 +158,7 @@ public class TaskManager {
      *
      * @return
      */
-    short displayTasks () {
+   void displayTasks () {
         List<Task> tasks = taskList.getAllTasks ( );
         if (!tasks.isEmpty ( )) {
             applicationConsole.showMessage ( "Voila la liste des tâches : " );
@@ -166,7 +166,6 @@ public class TaskManager {
         } else {
             applicationConsole.showMessage ( "La liste est vide\n" );
         }
-        return 0;
     }
 
 

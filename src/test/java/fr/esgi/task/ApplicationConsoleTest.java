@@ -40,8 +40,9 @@ class ApplicationConsoleTest {
 
     @Test
     void showMessage() {
-           console.showMessage("test");
-            Assertions.assertEquals("test\n", outputStream.toString());
+        String message = "Hello World!";
+        console.showMessage(message);
+        Assertions.assertEquals(message, outputStream.toString().trim());
     }
 
     @Test
