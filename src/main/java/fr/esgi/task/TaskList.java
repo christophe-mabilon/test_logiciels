@@ -2,6 +2,7 @@ package fr.esgi.task;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Classe qui gère la liste des tâches.
@@ -31,14 +32,14 @@ public class TaskList {
         return false;
     }
 
-    public Task markTaskAsCompleted ( String taskId ) {
-        Task task = taskList.stream ( ).filter ( t -> t.getId ( ) == Integer.parseInt ( taskId ) ).findFirst ( ).orElse ( null );
-        if (task != null) {
-            task.setDone ( true );
-            return task;
-        } else {
-            return null;
+    public boolean markTaskAsCompleted ( int taskId ) {
+        for (Task task : taskList) {
+            if (Objects.equals ( task.getId ( ) , Long.valueOf ( taskId ) )) {
+                task.setDone ( true );
+                return true;
+            }
         }
+        return false;
 
     }
 
@@ -50,10 +51,7 @@ public class TaskList {
      * Recherche une tache par son id
      */
     Task findById( long id){
-        Task task = this.taskList.stream ().filter ( t -> t.getId () == id ).findFirst ().orElse ( null );
-        return task;
-
-
+        return taskList.stream().filter(task -> task.getId() == id).findFirst().orElse(null);
     }
 }
 

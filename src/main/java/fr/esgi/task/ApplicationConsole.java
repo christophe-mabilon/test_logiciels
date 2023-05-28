@@ -9,16 +9,20 @@ public class ApplicationConsole {
         this.scanner = scanner;
     }
 
-    public void showMessage ( String message ) {
+    public short showMessage ( String message ) {
         System.out.println ( message );
+        return 0;
     }
 
-    public int readLine () {
-        try {
-            return Integer.parseInt ( scanner.nextLine ( ) );
-        } catch (NumberFormatException e) {
-            showMessage ( "Choix Invalid ! Veuillez saisir un nombre" );
-            return readLine ( ); // Essaye de relire les données
-        }
+    public int readLine() {
+        return Integer.parseInt ( scanner.nextLine ( ) );
     }
+
+
+    public short exit() {
+        this.showMessage ( "Au revoir !" );
+        System.exit ( 0 );
+        return 0;
+    }
+
 }

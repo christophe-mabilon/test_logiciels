@@ -1,5 +1,7 @@
 package fr.esgi.task;
 
+import java.util.Objects;
+
 public class Task {
     private static Long counter = 0L;
     //declaration des variables de la classe Task
@@ -16,6 +18,8 @@ public class Task {
     }
 
     // Getters et Setters
+
+
     public static Long getCounter () {
         return counter;
     }
@@ -27,7 +31,6 @@ public class Task {
     public Long getId () {
         return id;
     }
-
 
     public String getDescription () {
         return description;
@@ -45,23 +48,31 @@ public class Task {
         isDone = done;
     }
 
-
     @Override
     public boolean equals ( Object o ) {
         if (this == o) return true;
         if (!(o instanceof Task task)) return false;
 
-        if (getId ( ) != task.getId ( )) return false;
-        if (!getDescription ( ).equals ( task.getDescription ( ) )) return false;
-        return isDone.equals ( task.isDone );
+        if (!getId ( ).equals ( task.getId ( ) )) return false;
+        if (getDescription ( ) != null ? !getDescription ( ).equals ( task.getDescription ( ) ) : task.getDescription ( ) != null)
+            return false;
+        return Objects.equals ( isDone , task.isDone );
+    }
+
+    @Override
+    public int hashCode () {
+        int result = getId ( ).hashCode ( );
+        result = 31 * result + (getDescription ( ) != null ? getDescription ( ).hashCode ( ) : 0);
+        result = 31 * result + (isDone != null ? isDone.hashCode ( ) : 0);
+        return result;
     }
 
     @Override
     public String toString () {
-        return "Task" + id + " : { " +
+        return "Task{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
                 ", isDone=" + isDone +
-                " }";
+                '}';
     }
 }
