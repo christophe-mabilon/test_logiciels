@@ -3,7 +3,6 @@ package fr.esgi.task;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -11,7 +10,9 @@ import static org.mockito.Mockito.when;
 class TaskTest {
 
 
-
+    /**
+     * Test de la méthode getId
+     */
     @Test
     void getId () {
         // on initialise le compteur d'id
@@ -27,6 +28,9 @@ class TaskTest {
         Assertions.assertEquals ( 1 , task.getId ( ) );
     }
 
+    /**
+     * Test de la méthode setId
+     */
     @Test
     void setId () {
         // on initialise le compteur d'id
@@ -50,6 +54,9 @@ class TaskTest {
         Assertions.assertEquals ( 2 , task.getId ( ) );
     }
 
+    /**
+     * Test de la méthode getDescription
+     */
     @Test
     void getDescription () {
         // on initialise le compteur d'id
@@ -64,6 +71,9 @@ class TaskTest {
         Assertions.assertEquals ( "Test Task" , task.getDescription ( ) );
     }
 
+    /**
+     * Test de la méthode setDescription
+     */
     @Test
     void setDescription () {
         // on initialise le compteur d'id
@@ -78,6 +88,9 @@ class TaskTest {
         Assertions.assertEquals ( "Test Task" , task.getDescription ( ) );
     }
 
+    /**
+     * Test de la méthode getDone
+     */
     @Test
     void getDone () {
         // on initialise le compteur d'id
@@ -96,12 +109,15 @@ class TaskTest {
         Assertions.assertEquals ( true , task.getDone ( ) );
     }
 
+    /**
+     * Test de la méthode setDone
+     */
     @Test
     void setDone () {
         // on initialise le compteur d'id
         Task.setCounter ( 0L );
         //given
-        Task task = new Task ("Test Task", false);
+        Task task = new Task ( "Test Task" , false );
         //when
         task.setDone ( true );
         //then
@@ -109,6 +125,9 @@ class TaskTest {
 
     }
 
+    /**
+     * Test de la méthode equals
+     */
     @Test
     void testEquals () {
         // on initialise le compteur d'id
@@ -142,6 +161,9 @@ class TaskTest {
         Assertions.assertEquals ( true , task.getDone ( ) );
     }
 
+    /**
+     * Test de la méthode toString
+     */
     @Test
     void testToString () {
         // on initialise le compteur d'id
@@ -174,6 +196,9 @@ class TaskTest {
 
     }
 
+    /**
+     * Test du constructeur
+     */
     @Test
     void testConstructor () {
         // on initialise le compteur d'id

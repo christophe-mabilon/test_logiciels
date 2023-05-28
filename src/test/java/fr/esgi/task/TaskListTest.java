@@ -7,6 +7,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class TaskListTest {
     private final TaskList taskList = new TaskList ( );
 
+    /**
+     * Méthode qui permet d'ajouter une tache
+     * @return void ne retourne rien
+     *
+     */
     @Test
     void addTask () {
         // on initialise le compteur d'id
@@ -37,6 +42,10 @@ class TaskListTest {
 
     }
 
+    /**
+     * Méthode qui permet de supprimer une tache
+     * @return void ne retourne rien
+     */
     @Test
     void removeTask () {
         // on initialise le compteur d'id
@@ -71,6 +80,10 @@ class TaskListTest {
         assertEquals ( 0 , taskList.getAllTasks ( ).size ( ) , "La liste devrais contenir 0 tache" );
     }
 
+    /**
+     * Méthode qui permet de marquer une tache comme complétée
+     * @return void ne retourne rien
+     */
     @Test
     void markTaskAsCompleted () {
         // on initialise le compteur d'id
@@ -103,6 +116,10 @@ class TaskListTest {
 
     }
 
+    /**
+     * Méthode qui permet de récupérer toutes les taches
+     * @return void ne retourne rien
+     */
     @Test
     void getAllTasks () {
         // on initialise le compteur d'id
@@ -125,6 +142,10 @@ class TaskListTest {
 
     }
 
+    /**
+     * Méthode qui permet de récupérer une tache par son id
+     * @return void ne retourne rien
+     */
     @Test
     void findById () {
         // on initialise le compteur d'id
@@ -172,7 +193,6 @@ class TaskListTest {
         // verification de la task 2
         assertEquals ( "Task 2" , task2Description , "La description devrais être ici: id:1,description:Task1,isDone:false" );
         assertFalse ( task2Done , "L'état de la tache devrais être ici a false" );
-
 
     }
 }
