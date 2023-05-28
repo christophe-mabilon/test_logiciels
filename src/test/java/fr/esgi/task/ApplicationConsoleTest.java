@@ -17,6 +17,7 @@ class ApplicationConsoleTest {
 
     private Scanner scanner;
     private ApplicationConsole console ;
+    private PrintStream originalSystemOut;
     private ByteArrayOutputStream outputStream;
 
     /**
@@ -26,8 +27,10 @@ class ApplicationConsoleTest {
     void setUp() {
         scanner = new Scanner ( System.in );
         console = new ApplicationConsole(scanner);
+        originalSystemOut = System.out;
+        outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
     }
-
 
     /**
      * Méthode qui permet de tester si le message est affiché
