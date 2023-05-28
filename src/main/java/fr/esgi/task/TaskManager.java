@@ -99,6 +99,10 @@ public class TaskManager {
     void addTask ( Scanner scanner ) {
         applicationConsole.showMessage ( "Entrez la description de la tâche : " );
         String description = scanner.nextLine ( );
+        if(taskList.containsTask ( description )){
+            applicationConsole.showMessage ( "La tâche existe déjà\n" );
+            return;
+        }
         taskList.addTask ( description );
         applicationConsole.showMessage ( "La Tâche " + description + " a été ajoutée avec succès\n" );
     }

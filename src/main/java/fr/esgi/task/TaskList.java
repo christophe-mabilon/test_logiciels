@@ -62,5 +62,17 @@ public class TaskList {
     public Task findById( long id){
         return taskList.stream().filter(task -> task.getId() == id).findFirst().orElse(null);
     }
+    public Task findByDescription(String description){
+        return taskList.stream().filter(task -> task.getDescription().equals(description)).findFirst().orElse(null);
+    }
+
+    public boolean containsTask ( String description ) {
+        for (Task task : taskList) {
+            if (task.getDescription ( ).equals ( description )) {
+                return true;
+            }
+        }
+        return false;
+    }
 }
 

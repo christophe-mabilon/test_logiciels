@@ -10,7 +10,6 @@ public class Task {
     private Boolean isDone;
 
     //CONSTRUCTOR
-
     public Task ( String description , Boolean isDone ) {
         id = ++counter;
         this.description = description;
