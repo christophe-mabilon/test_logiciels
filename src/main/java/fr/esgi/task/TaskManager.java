@@ -118,9 +118,9 @@ public class TaskManager {
         }
         applicationConsole.showMessage ( "Sélectionnez l'ID de la tâche à marquer comme terminée : " );
         int id = applicationConsole.readLine ( );
-        boolean task = taskList.markTaskAsCompleted ( id) ;
+        boolean task = taskList.markTaskAsCompleted ( (long) id ) ;
         if (task) {
-            taskList.markTaskAsCompleted ( id) ;
+            taskList.markTaskAsCompleted ( (long) id ) ;
             applicationConsole.showMessage ( "Tâche marquée comme terminée avec succès\n" );
         } else {
             applicationConsole.showMessage ( "Tâche non trouvée\n" );

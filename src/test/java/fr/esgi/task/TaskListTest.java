@@ -5,10 +5,12 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TaskListTest {
-    private final TaskList  taskList = new TaskList ( );
+    private final TaskList taskList = new TaskList ( );
+
     @Test
     void addTask () {
-
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
 
         //On déclare les attributs d'une tache par default l'isDone est à false
         String description = "Task 1";
@@ -37,7 +39,8 @@ class TaskListTest {
 
     @Test
     void removeTask () {
-
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
 
         //on crée 2 taches instanciées par default comme non complétée
         taskList.addTask ( "Task 1" );
@@ -70,7 +73,8 @@ class TaskListTest {
 
     @Test
     void markTaskAsCompleted () {
-
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
 
         //on crée 2 taches instanciées par default comme non complétée
         taskList.addTask ( "Task 1" );
@@ -86,13 +90,13 @@ class TaskListTest {
         assertEquals ( false , taskList.findById ( 2L ).getDone ( ) , "L'état de la tache devrais être ici a false" );
 
         //on marque la tache 1 comme complétée
-        taskList.markTaskAsCompleted ( 1 );
+        taskList.markTaskAsCompleted ( 1L );
         //On vérifie les donée des taches
         assertEquals ( "Task 1" , taskList.findById ( 1L ).getDescription ( ) , "La description devrais être ici: id:1,description:Task1" );
         assertEquals ( true , taskList.findById ( 1L ).getDone ( ) , "L'état de la tache devrais être ici a true" );
 
         // on marque la tache 2 comme complétée
-        taskList.markTaskAsCompleted ( 2 );
+        taskList.markTaskAsCompleted ( 2L );
         //On vérifie les données des taches
         assertEquals ( "Task 2" , taskList.findById ( 2L ).getDescription ( ) , "La description devrais être ici: id:1,description:Task1" );
         assertEquals ( true , taskList.findById ( 2L ).getDone ( ) , "L'état de la tache devrais être ici a true" );
@@ -101,7 +105,8 @@ class TaskListTest {
 
     @Test
     void getAllTasks () {
-
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
 
         //on crée 2 taches instanciées par default comme non complétée
         taskList.addTask ( "Task 1" );
@@ -122,7 +127,8 @@ class TaskListTest {
 
     @Test
     void findById () {
-
+        // on initialise le compteur d'id
+        Task.setCounter ( 0L );
 
         //on crée 2 taches instanciées par default comme non complétée
         taskList.addTask ( "Task 1" );
